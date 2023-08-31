@@ -1,2 +1,3 @@
-# redcapRecordMoverTEST
-repo di test delle API Redcap per poter spostare i record da un progetto ad un altro
+# redcap API ready-to-go java API library
+Repository containing ready-to-go java classes to perform operations on REDCap API, based on platform provided examples.
+The collection is still uncommented and thus incomplete on all API capabilities, the work is going on.
