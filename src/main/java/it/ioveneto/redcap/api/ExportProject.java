@@ -102,6 +102,7 @@ public class ExportProject
 	}
 
 	public String getResult() {
+
 		return result.toString();
 	}
 }

@@ -33,12 +33,13 @@ public class ExportRecords {
     private String line;
 
 
-    public ExportRecords(final String api_token, final String format, final String url, final String type) {
+    public ExportRecords(final String api_token, final String format, final String url, final String type, final String filterLogic) {
         params = new ArrayList<NameValuePair>();
         params.add(new BasicNameValuePair("token", api_token));
         params.add(new BasicNameValuePair("content", "record"));
         params.add(new BasicNameValuePair("format", format));
         params.add(new BasicNameValuePair("type", type));
+        params.add(new BasicNameValuePair("filterLogic", filterLogic));
 
 		/*
 		params.add(new BasicNameValuePair("type", "flat"));
@@ -100,6 +101,7 @@ public class ExportRecords {
     }
 
     public String getResult() {
+
         return result.toString();
     }
 }

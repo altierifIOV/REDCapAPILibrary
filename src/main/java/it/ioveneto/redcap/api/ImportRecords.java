@@ -130,10 +130,12 @@ public class ImportRecords
 	}
 
 	public int getRespCode() {
+
 		return respCode;
 	}
 
 	public String getResult() {
+
 		return result.toString();
 	}
 }
