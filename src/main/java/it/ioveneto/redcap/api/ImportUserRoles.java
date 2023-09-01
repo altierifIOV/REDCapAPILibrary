@@ -14,7 +14,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ImportEventsJSON
+public class ImportUserRoles
 {
 	private final List<NameValuePair> params;
 	private final HttpPost post;
@@ -25,27 +25,43 @@ public class ImportEventsJSON
 	private final StringBuffer result;
 	private String line;
 
-	public ImportEventsJSON(final String api_token, final String url, final JSONArray data)
+
+	public ImportUserRoles(final String api_token, final String url, final JSONArray data)
 	{
-/*
-		record = new JSONObject();
-		record.put("event_name", "Event 1");
-		record.put("arm_num", "1");
-		record.put("day_offset", "0");
-		record.put("offset_min", "0");
-		record.put("offset_max", "0");
-		record.put("unique_event_name", "event_1_arm_1");
+/*		record = new JSONObject();
+		record.put("unique_role_name", "U-527D39JXAC");
+		record.put("role_label", "Project Manager");
+		record.put("data_access_group", "1");
+		record.put("data_export_tool", "1");
+		record.put("mobile_app", "1");
+		record.put("mobile_app_download_data", "1");
+		record.put("lock_records_all_forms", "1");
+		record.put("lock_records", "1");
+		record.put("lock_records_customization", "1");
+		record.put("record_delete", "1");
+		record.put("record_rename", "1");
+		record.put("record_create", "1");
+		record.put("api_import", "1");
+		record.put("api_export", "1");
+		record.put("data_quality_execute", "1");
+		record.put("data_quality_create", "1");
+		record.put("file_repository", "1");
+		record.put("logging", "1");
+		record.put("data_comparison_tool", "1");
+		record.put("data_import_tool", "1");
+		record.put("calendar", "1");
+		record.put("stats_and_charts", "1");
+		record.put("reports", "1");
+		record.put("user_rights", "1");
+		record.put("design", "1");
 
 		data = new JSONArray();
-		data.add(record);
-*/
+		data.add(record);*/
 
 		params = new ArrayList<NameValuePair>();
 		params.add(new BasicNameValuePair("token", api_token));
-		params.add(new BasicNameValuePair("content", "event"));
-		params.add(new BasicNameValuePair("action", "import"));
+		params.add(new BasicNameValuePair("content", "userRole"));
 		params.add(new BasicNameValuePair("format", "json"));
-		params.add(new BasicNameValuePair("override", "0"));
 		params.add(new BasicNameValuePair("data", data.toJSONString()));
 
 		post = new HttpPost(url);

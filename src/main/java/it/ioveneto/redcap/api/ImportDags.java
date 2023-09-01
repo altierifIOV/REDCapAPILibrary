@@ -14,7 +14,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ImportUsersJSON
+public class ImportDags
 {
 	private final List<NameValuePair> params;
 	private final HttpPost post;
@@ -25,44 +25,22 @@ public class ImportUsersJSON
 	private final StringBuffer result;
 	private String line;
 
-
-	public ImportUsersJSON(final String api_token, final String url, final JSONArray data)
+	public ImportDags(final String api_token, final String url, final JSONArray data)
 	{
 /*
 		record = new JSONObject();
-		record.put("username", "test_user_47");
-		record.put("expiration", "2016-01-01");
-		record.put("data_access_group", "1");
-		record.put("data_export", "1");
-		record.put("mobile_app", "1");
-		record.put("mobile_app_download_data", "1");
-		record.put("lock_record_multiform", "1");
-		record.put("lock_record", "1");
-		record.put("lock_record_customize", "1");
-		record.put("record_delete", "1");
-		record.put("record_rename", "1");
-		record.put("record_create", "1");
-		record.put("api_import", "1");
-		record.put("api_export", "1");
-		record.put("data_quality_execute", "1");
-		record.put("data_quality_design", "1");
-		record.put("file_repository", "1");
-		record.put("data_logging", "1");
-		record.put("data_comparison_tool", "1");
-		record.put("data_import_tool", "1");
-		record.put("calendar", "1");
-		record.put("graphical", "1");
-		record.put("reports", "1");
-		record.put("user_rights", "1");
-		record.put("design", "1");
+		record.put("data_access_group_name", "Group API");
+		record.put("unique_group_name", "");
 
 		data = new JSONArray();
 		data.add(record);
-
 */
+
 		params = new ArrayList<NameValuePair>();
 		params.add(new BasicNameValuePair("token", api_token));
-		params.add(new BasicNameValuePair("content", "user"));
+		params.add(new BasicNameValuePair("content", "dag"));
+		params.add(new BasicNameValuePair("action", "import"));
+
 		params.add(new BasicNameValuePair("format", "json"));
 		params.add(new BasicNameValuePair("data", data.toJSONString()));
 

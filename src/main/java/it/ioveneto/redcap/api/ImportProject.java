@@ -14,7 +14,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ImportProjectJSON
+public class ImportProject
 {
 	private final List<NameValuePair> params;
 	private final HttpPost post;
@@ -26,7 +26,7 @@ public class ImportProjectJSON
 	private String line;
 
 
-	public ImportProjectJSON(final String api_token, final String url, final JSONArray data)
+	public ImportProject(final String api_token, final String url, final JSONArray data)
 	{
 /*		record = new JSONObject();
 		record.put("project_title", "Gestione sperimentazioni cliniche - Modulo PAZIENTE");

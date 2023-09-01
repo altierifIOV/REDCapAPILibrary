@@ -96,4 +96,12 @@ public class ExportProject
 		System.out.println("respCode: " + respCode);
 		System.out.println("result: " + result.toString());
 	}
+
+	public int getRespCode() {
+		return respCode;
+	}
+
+	public String getResult() {
+		return result.toString();
+	}
 }

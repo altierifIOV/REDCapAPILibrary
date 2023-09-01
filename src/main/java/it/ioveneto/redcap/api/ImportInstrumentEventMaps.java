@@ -14,7 +14,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ImportUserDagMapsJSON
+public class ImportInstrumentEventMaps
 {
 	private final List<NameValuePair> params;
 	private final HttpPost post;
@@ -25,18 +25,37 @@ public class ImportUserDagMapsJSON
 	private final StringBuffer result;
 	private String line;
 
-	public ImportUserDagMapsJSON(final String api_token, final String url, final JSONArray data)
+	public ImportInstrumentEventMaps(final String api_token, final String url, final JSONArray data)
 	{
-/*		record = new JSONObject();
-		record.put("username", "testuser");
-		record.put("redcap_data_access_group", "api_testing_group");
+/*		final JSONArray form_1 = new JSONArray();
+		form_1.add("instr_1");
+		form_1.add("instr_2");
 
-		data = new JSONArray();
-		data.add(record);*/
+		final JSONArray form_2 = new JSONArray();
+		form_2.add("instr_1");
+
+		final JSONObject event_1 = new JSONObject();
+		event_1.put("unique_event_name", "event_1_arm_1");
+		event_1.put("form", form_1);
+
+		final JSONObject event_2 = new JSONObject();
+		event_2.put("unique_event_name", "event_2_arm_1");
+		event_2.put("form", form_2);
+
+		final JSONArray event = new JSONArray();
+		event.add(event_1);
+		event.add(event_2);
+
+		final JSONObject arm = new JSONObject();
+		arm.put("number", "1");
+		arm.put("event", event);
+
+		data = new JSONObject();
+		data.put("arm", arm);*/
 
 		params = new ArrayList<NameValuePair>();
 		params.add(new BasicNameValuePair("token", api_token));
-		params.add(new BasicNameValuePair("content", "userDagMapping"));
+		params.add(new BasicNameValuePair("content", "arm"));
 		params.add(new BasicNameValuePair("action", "import"));
 		params.add(new BasicNameValuePair("format", "json"));
 		params.add(new BasicNameValuePair("data", data.toJSONString()));

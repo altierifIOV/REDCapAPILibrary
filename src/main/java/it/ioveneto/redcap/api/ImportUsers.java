@@ -14,7 +14,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ImportInstrumentEventMapsJSON
+public class ImportUsers
 {
 	private final List<NameValuePair> params;
 	private final HttpPost post;
@@ -25,38 +25,44 @@ public class ImportInstrumentEventMapsJSON
 	private final StringBuffer result;
 	private String line;
 
-	public ImportInstrumentEventMapsJSON(final String api_token, final String url, final JSONArray data)
+
+	public ImportUsers(final String api_token, final String url, final JSONArray data)
 	{
-/*		final JSONArray form_1 = new JSONArray();
-		form_1.add("instr_1");
-		form_1.add("instr_2");
+/*
+		record = new JSONObject();
+		record.put("username", "test_user_47");
+		record.put("expiration", "2016-01-01");
+		record.put("data_access_group", "1");
+		record.put("data_export", "1");
+		record.put("mobile_app", "1");
+		record.put("mobile_app_download_data", "1");
+		record.put("lock_record_multiform", "1");
+		record.put("lock_record", "1");
+		record.put("lock_record_customize", "1");
+		record.put("record_delete", "1");
+		record.put("record_rename", "1");
+		record.put("record_create", "1");
+		record.put("api_import", "1");
+		record.put("api_export", "1");
+		record.put("data_quality_execute", "1");
+		record.put("data_quality_design", "1");
+		record.put("file_repository", "1");
+		record.put("data_logging", "1");
+		record.put("data_comparison_tool", "1");
+		record.put("data_import_tool", "1");
+		record.put("calendar", "1");
+		record.put("graphical", "1");
+		record.put("reports", "1");
+		record.put("user_rights", "1");
+		record.put("design", "1");
 
-		final JSONArray form_2 = new JSONArray();
-		form_2.add("instr_1");
+		data = new JSONArray();
+		data.add(record);
 
-		final JSONObject event_1 = new JSONObject();
-		event_1.put("unique_event_name", "event_1_arm_1");
-		event_1.put("form", form_1);
-
-		final JSONObject event_2 = new JSONObject();
-		event_2.put("unique_event_name", "event_2_arm_1");
-		event_2.put("form", form_2);
-
-		final JSONArray event = new JSONArray();
-		event.add(event_1);
-		event.add(event_2);
-
-		final JSONObject arm = new JSONObject();
-		arm.put("number", "1");
-		arm.put("event", event);
-
-		data = new JSONObject();
-		data.put("arm", arm);*/
-
+*/
 		params = new ArrayList<NameValuePair>();
 		params.add(new BasicNameValuePair("token", api_token));
-		params.add(new BasicNameValuePair("content", "arm"));
-		params.add(new BasicNameValuePair("action", "import"));
+		params.add(new BasicNameValuePair("content", "user"));
 		params.add(new BasicNameValuePair("format", "json"));
 		params.add(new BasicNameValuePair("data", data.toJSONString()));
 
