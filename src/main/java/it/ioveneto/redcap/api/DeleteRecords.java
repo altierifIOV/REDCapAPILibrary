@@ -31,12 +31,13 @@ public class DeleteRecords {
 
     /**
      * Essential constructor with fundamental parameters
-     * @param api_token      the token that defines the REDCap project of interest. To use this method, you must have
-     *                       'Delete Record' user privileges in the project.
-     * @param recordsID      an array of record IDs specifying records you wish to delete
-     * @param url            API endpoint (usually "https://myredcapdomain/redcap/api/")
+     *
+     * @param api_token the token that defines the REDCap project of interest. To use this method, you must have 'Delete
+     *                  Record' user privileges in the project.
+     * @param recordsID an array of record IDs specifying records you wish to delete
+     * @param url       API endpoint (usually "https://myredcapdomain/redcap/api/")
      */
-    public DeleteRecords(final String api_token, final String[] recordsID, final String url){
+    public DeleteRecords(final String api_token, final String[] recordsID, final String url) {
         this(api_token, recordsID, null, null, null, null, url, false);
     }
 
