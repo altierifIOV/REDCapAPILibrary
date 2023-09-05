@@ -15,4 +15,17 @@ public class Utilities {
         }
         return true;
     }
+
+    public static boolean checkNumberPositive(String number) {
+        int num;
+        try {
+            num = Integer.parseInt(number);
+        } catch (NumberFormatException e) {
+            return false;
+        }
+        if (num > 0)
+            return true;
+        else
+            return false;
+    }
 }
