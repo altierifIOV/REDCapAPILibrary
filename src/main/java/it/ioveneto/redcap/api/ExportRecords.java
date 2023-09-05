@@ -49,7 +49,7 @@ public class ExportRecords {
     }
 
     /**
-     * Basic invocation with record filtering
+     * Basic invocation with record and field filtering
      * @param api_token                    the token that defines the REDCap project of interest.
      *                                     Note about export rights: Please be aware that Data Export user rights
      *                                     will be applied to this API request. For  example, if you have 'No Access'
@@ -66,6 +66,8 @@ public class ExportRecords {
      *                                     (or record-events, if a longitudinal project) where the logic evaluates as
      *                                     TRUE. Please note that if the filter logic contains any incorrect syntax,
      *                                     the API will respond with an error message.
+     * @param fieldsList                   an array of field names specifying specific fields you wish to pull or,
+     *                                     alternatively, as a string (comma-separated list)
      * @param exportDAGs                   specifies whether or not to export the 'redcap_data_access_group' field when
      *                                     data access groups are utilized in the project. NOTE: This flag is only
      *                                     viable if the user whose token is being used to make the API request is
@@ -73,8 +75,8 @@ public class ExportRecords {
      *                                     revert to its default value.
      * @param url                          API endpoint (usually "https://myredcapdomain/redcap/api/")
      */
-    public ExportRecords(final String api_token, final String format, final String filter, final boolean exportDAGs, final String url){
-        this(api_token, format, "flat", filter, null, null, null, "raw", "raw", false, format, false, exportDAGs, null, null, ",", ".", false, url, false);
+    public ExportRecords(final String api_token, final String format, final String filter, final String fieldsList, final boolean exportDAGs, final String url){
+        this(api_token, format, "flat", filter, null, fieldsList, null, "raw", "raw", false, format, false, exportDAGs, null, null, ",", ".", false, url, false);
     }
 
 
