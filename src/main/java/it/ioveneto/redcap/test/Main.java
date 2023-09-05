@@ -14,7 +14,7 @@ public class Main
 	 */
 	public static void main(final String[] args)
 	{
-		final ExportProject exportProjectSource = new ExportProject(args[0], "json", args[1]);
+		final ExportProject exportProjectSource = new ExportProject(args[0], "json", "json", args[1], true);
 		exportProjectSource.doPost();
 
 	}
