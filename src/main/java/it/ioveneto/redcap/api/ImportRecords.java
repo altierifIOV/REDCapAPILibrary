@@ -2,16 +2,9 @@ package it.ioveneto.redcap.api;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang.StringUtils;
-import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.message.BasicNameValuePair;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.math.BigInteger;
 import java.security.SecureRandom;
 import java.util.ArrayList;
@@ -20,18 +13,11 @@ import java.util.List;
 /**
  * Allows to import records inside a project.
  */
-public class ImportRecords {
+public class ImportRecords extends APIRequest{
     private final List<NameValuePair> params;
-    private final HttpPost post;
-    private final HttpClient client;
-    private final StringBuffer result;
     private final String recordID;
     private final SecureRandom random;
-    private HttpResponse resp;
-    private int respCode;
-    private BufferedReader reader;
-    private String line;
-	private boolean debugMode;
+
 
 	/**
 	 * Basic constructor with fundamental fields
@@ -123,6 +109,9 @@ public class ImportRecords {
      *                          standard output.
      */
     public ImportRecords(final String api_token, final String format, final String type, final String overwriteBehavior, final boolean forceAutoNumber, final String data, final String dateFormat, final String csvDelimiter, final String returnContent, final String errorFormat, final String url, final boolean debugMode) {
+
+		super(url, debugMode);
+
         random = new SecureRandom();
         recordID = DigestUtils.sha1Hex(new BigInteger(16, random).toString(16)).substring(0, 16);
 
@@ -233,99 +222,7 @@ public class ImportRecords {
 				params.add(new BasicNameValuePair("returnFormat", errorFormat));
 		}
 
-		if (url == null)
-			throw new IllegalArgumentException("must provide valid URL of REDCap API endpoint");
-
-        post = new HttpPost(url);
-        post.setHeader("Content-Type", "application/x-www-form-urlencoded");
-
-        try {
-            post.setEntity(new UrlEncodedFormEntity(params));
-        } catch (final Exception e) {
-            e.printStackTrace();
-        }
-
-		this.debugMode = debugMode;
-        result = new StringBuffer();
-        client = HttpClientBuilder.create().build();
-        respCode = -1;
-        reader = null;
-        line = null;
+		super.setParams(params);
     }
 
-	/**
-	 * Performs the Http request and handles results. Prints HTTP response and result on standard output if debug mode
-	 * is active
-	 */
-    public void doPost() {
-        resp = null;
-
-        try {
-            resp = client.execute(post);
-        } catch (final Exception e) {
-            e.printStackTrace();
-        }
-
-        if (resp != null) {
-            respCode = resp.getStatusLine().getStatusCode();
-
-            try {
-                reader = new BufferedReader(new InputStreamReader(resp.getEntity().getContent()));
-            } catch (final Exception e) {
-                e.printStackTrace();
-            }
-        }
-
-        if (reader != null) {
-            try {
-                while ((line = reader.readLine()) != null) {
-                    result.append(line);
-                }
-            } catch (final Exception e) {
-                e.printStackTrace();
-            }
-        }
-
-		if (debugMode) {
-			System.out.println("respCode: " + respCode);
-			System.out.println("result: " + result.toString());
-		}
-    }
-	/**
-	 * Returns the HTTP response of the request
-	 * @return the response as int, -1 if not executed
-	 */
-	public int getRespCode() {
-		return respCode;
-	}
-
-	/**
-	 * Returns the result of HTTP request
-	 * @return the result as string, null if any (or not yet executed)
-	 */
-	public String getResult() {
-
-		return result.toString();
-	}
-
-	/**
-	 * Checks if debut mode is activated or not
-	 * @return true if active
-	 */
-	public boolean isDebugMode() {
-		return debugMode;
-	}
-
-	/**
-	 * Turns on debug mode
-	 */
-	public void setDebugMode() {
-		this.debugMode = true;
-	}
-	/**
-	 * Turns off debug mode
-	 */
-	public void unsetDebugMode() {
-		this.debugMode = false;
-	}
 }
