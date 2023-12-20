@@ -81,6 +81,11 @@ public abstract class APIRequest {
             System.out.println("respCode: " + respCode);
             System.out.println("result: " + result.toString());
         }
+
+        if (respCode != 200)
+            throw new APICallException("Call failed with HTTP code "+respCode+": "+resp.getStatusLine().getReasonPhrase()+
+                    " - result: "+result.toString());
+
     }
 
     /**
